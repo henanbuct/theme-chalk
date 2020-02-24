@@ -67,7 +67,7 @@
     background-color: $--color-white;
 
     // 纯属为了增加权重
-    &[class*=cell] {
+    &[class*="cell"] {
       padding: 20px 50px;
     }
 
@@ -160,11 +160,11 @@
   }
 
   @include m(small) {
-    font-size: 12px;
+    font-size: 14px;
 
     th,
     td {
-      padding: 8px 0;
+      padding: 16px 0 8px;
     }
   }
 
@@ -198,6 +198,8 @@
     overflow: hidden;
     user-select: none;
     background-color: $--table-header-background-color;
+    color: #344064;
+    font-weight: 600;
 
     >.cell {
       display: inline-block;
@@ -256,7 +258,7 @@
     border: $--table-border;
 
     @include share-rule(border-pseudo) {
-      content: '';
+      content: "";
       position: absolute;
       background-color: $--table-border-color;
       z-index: 1;
@@ -322,7 +324,7 @@
     box-shadow: $--table-fixed-box-shadow;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       bottom: 0;
@@ -495,7 +497,7 @@
     & .el-table__body {
       & tr.el-table__row--striped {
         td {
-          background: #FAFAFA;
+          background: #fafafa;
         }
 
         &.current-row td {
@@ -543,13 +545,13 @@
     & i {
       color: $--color-info;
       font-size: 12px;
-      transform: scale(.75);
+      transform: scale(0.75);
     }
   }
 
   @include m(enable-row-transition) {
     .el-table__body td {
-      transition: background-color .25s ease;
+      transition: background-color 0.25s ease;
     }
   }
 
@@ -568,7 +570,7 @@
     }
   }
 
-  [class*=el-table__row--level] {
+  [class*="el-table__row--level"] {
     .el-table__expand-icon {
       display: inline-block;
       width: 20px;
