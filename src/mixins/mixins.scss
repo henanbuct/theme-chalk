@@ -4,12 +4,15 @@
 /* Break-points
  -------------------------- */
 @mixin res($key, $map: $--breakpoints) {
+
   // 循环断点Map，如果存在则返回
   @if map-has-key($map, $key) {
     @media only screen and #{inspect(map-get($map, $key))} {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     @warn "Undefeined points: `#{$map}`";
   }
 }
@@ -23,14 +26,15 @@
   &::-webkit-scrollbar {
     z-index: 11;
     width: 6px;
+    height: 12px;
 
     &:horizontal {
-      height: 6px;
+      height: 12px;
     }
 
     &-thumb {
-      border-radius: 5px;
       width: 6px;
+      border-radius: 3px;
       background: $--scrollbar-thumb-background;
     }
 
@@ -68,7 +72,7 @@
 /* BEM
  -------------------------- */
 @mixin b($block) {
-  $B: $namespace + "-" + $block !global;
+  $B: $namespace + "-"+ $block !global;
 
   .#{$B} {
     @content;
@@ -79,25 +83,18 @@
   $E: $element !global;
   $selector: &;
   $currentSelector: "";
+
   @each $unit in $element {
     $currentSelector: #{$currentSelector +
-      "." +
-      $B +
-      $element-separator +
-      $unit +
-      ","};
+ "."+$B+$element-separator+$unit+","
   }
 
-  @if hitAllSpecialNestRule($selector) {
-    @at-root {
-      #{$selector} {
-        #{$currentSelector} {
-          @content;
-        }
-      }
-    }
-  } @else {
-    @at-root {
+  ;
+}
+
+@if hitAllSpecialNestRule($selector) {
+  @at-root {
+    #{$selector} {
       #{$currentSelector} {
         @content;
       }
@@ -105,22 +102,32 @@
   }
 }
 
-@mixin m($modifier) {
-  $selector: &;
-  $currentSelector: "";
-  @each $unit in $modifier {
-    $currentSelector: #{$currentSelector +
-      & +
-      $modifier-separator +
-      $unit +
-      ","};
-  }
-
+@else {
   @at-root {
     #{$currentSelector} {
       @content;
     }
   }
+}
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+ &+$modifier-separator+$unit+","
+  }
+
+  ;
+}
+
+@at-root {
+  #{$currentSelector} {
+    @content;
+  }
+}
 }
 
 @mixin configurable-m($modifier, $E-flag: false) {
@@ -140,12 +147,10 @@
   }
 }
 
-@mixin spec-selector(
-  $specSelector: "",
+@mixin spec-selector($specSelector: "",
   $element: $E,
   $modifier: false,
-  $block: $B
-) {
+  $block: $B) {
   $modifierCombo: "";
 
   @if $modifier {
@@ -154,12 +159,13 @@
 
   @at-root {
     #{&}#{$specSelector}.#{$block
-      + $element-separator
-      + $element
-      + $modifierCombo} {
-      @content;
-    }
++$element-separator+$element+$modifierCombo
   }
+
+    {
+    @content;
+  }
+}
 }
 
 @mixin meb($modifier: false, $element: $E, $block: $B) {
@@ -192,7 +198,7 @@
 }
 
 @mixin share-rule($name) {
-  $rule-name: "%shared-" + $name;
+  $rule-name: "%shared-"+ $name;
 
   @at-root #{$rule-name} {
     @content;
@@ -201,6 +207,6 @@
 
 @mixin pseudo($pseudo) {
   @at-root #{&}#{":#{$pseudo}"} {
-    @content;
-  }
+@content;
+}
 }
