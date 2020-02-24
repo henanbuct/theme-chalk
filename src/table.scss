@@ -13,7 +13,7 @@
   max-width: 100%;
   font-size: 14px;
   color: $--table-font-color;
-  background-color: $--color-white;
+  background: $--color-white;
   border: 1px solid #dcdee0;
   border-radius: 4px;
 
@@ -87,9 +87,6 @@
   }
 
   @include m(fit) {
-    border-right: 0;
-    border-bottom: 0;
-
     th.gutter,
     td.gutter {
       border-right-width: 1px;
