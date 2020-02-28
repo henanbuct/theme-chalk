@@ -54,7 +54,7 @@
       transform: rotate(90deg);
     }
 
-    > .el-icon {
+    >.el-icon {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -87,6 +87,7 @@
   }
 
   @include m(fit) {
+
     th.gutter,
     td.gutter {
       border-right-width: 1px;
@@ -142,13 +143,14 @@
     }
 
     &.is-hidden {
-      > * {
+      >* {
         visibility: hidden;
       }
     }
   }
 
   @include m(medium) {
+
     th,
     td {
       padding: 10px 0;
@@ -198,7 +200,7 @@
     font-weight: 600;
     background-color: $--table-header-background-color;
 
-    > .cell {
+    >.cell {
       display: inline-block;
       box-sizing: border-box;
       position: relative;
@@ -212,7 +214,7 @@
       }
     }
 
-    &.required > div::before {
+    &.required>div::before {
       display: inline-block;
       content: "";
       width: 8px;
@@ -412,33 +414,34 @@
     position: relative;
 
     @include when(scrolling-none) {
-      ~ .el-table__fixed,
-      ~ .el-table__fixed-right {
+
+      ~.el-table__fixed,
+      ~.el-table__fixed-right {
         box-shadow: none;
       }
     }
 
     @include when(scrolling-left) {
-      ~ .el-table__fixed {
+      ~.el-table__fixed {
         box-shadow: none;
       }
     }
 
     @include when(scrolling-right) {
-      ~ .el-table__fixed-right {
+      ~.el-table__fixed-right {
         box-shadow: none;
       }
     }
 
     .el-table--border {
       @include when(scrolling-right) {
-        ~ .el-table__fixed-right {
+        ~.el-table__fixed-right {
           border-left: $--table-border;
         }
       }
 
       @include when(scrolling-left) {
-        ~ .el-table__fixed {
+        ~.el-table__fixed {
           border-right: $--table-border;
         }
       }
@@ -505,18 +508,20 @@
 
   @include e(body) {
     tr.hover-row {
+
       &,
       &.el-table__row--striped {
+
         &,
         &.current-row {
-          > td {
+          >td {
             background-color: $--table-row-hover-background-color;
           }
         }
       }
     }
 
-    tr.current-row > td {
+    tr.current-row>td {
       background-color: $--table-current-row-background-color;
     }
   }
@@ -550,12 +555,13 @@
   }
 
   @include m(enable-row-hover) {
-    .el-table__body tr:hover > td {
+    .el-table__body tr:hover>td {
       background-color: $--table-row-hover-background-color;
     }
   }
 
   @include m(fluid-height) {
+
     .el-table__fixed,
     .el-table__fixed-right {
       bottom: 0;
